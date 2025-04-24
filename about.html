@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kamyko - Notre approche du développement tech minimaliste - À propos de nous">
+    <title>À Propos | Kamyko - Solutions Techniques Innovantes</title>
+    
+    <!-- Polices Google Fonts (JetBrains Mono & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Préchargement du CSS -->
+    <link rel="preload" href="styles/main.css" as="style">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/about.css">
+
+    <!-- Script de gestion du thème (placé en premier pour éviter FOUC) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12v9" /><path d="M12 12l-8 -4.5" /></svg>
+                    <span>KAMYKO</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="about.html" class="active">À PROPOS</a></li>
+                    <li><a href="services.html">SERVICES</a></li>
+                    <li><a href="expertise.html">EXPERTISE</a></li>
+                    <li><a href="projets.html">PROJETS</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Changer de thème">
+                        Mode Sombre
+                    </button>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>NOTRE APPROCHE</h1>
+                <p class="lead">Minimalisme technique, précision, innovation.</p>
+            </div>
+        </section>
+
+        <section class="section about-main">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h2>Notre Philosophie</h2>
+                        <p>Chez Kamyko, nous pensons que la qualité d'un code se mesure autant à sa performance qu'à sa lisibilité. Notre philosophie est centrée sur la simplicité technique, la précision dans l'exécution et l'innovation continue.</p>
+                        <p>Notre équipe combine l'expertise technique avec une sensibilité esthétique, créant des produits aussi beaux qu'efficaces, aussi modernes que durables.</p>
+                        
+                        <h3>Principes Fondamentaux</h3>
+                        <ul class="about-list">
+                            <li><strong>Simplicité</strong> - Nous croyons qu'un code simple est un code maintenable.</li>
+                            <li><strong>Efficacité</strong> - Chaque ligne de code a un but précis, rien n'est superflu.</li>
+                            <li><strong>Évolutivité</strong> - Nos solutions sont conçues pour évoluer avec vos besoins.</li>
+                            <li><strong>Esthétique</strong> - L'élégance du code se reflète dans celle de l'interface.</li>
+                        </ul>
+                    </div>
+                    <div class="about-visual">
+                        <div class="code-terminal">
+                            <div class="terminal-header">
+                                <span class="terminal-button"></span>
+                                <span class="terminal-button"></span>
+                                <span class="terminal-button"></span>
+                                <span class="terminal-title">kamyko_philosophy.md</span>
+                            </div>
+                            <div class="terminal-content">
+                                <pre><code># KAMYKO APPROACH
+
+## We believe in:
+
+- Clean code that speaks for itself
+- Performance-first engineering
+- Constant iteration and refinement
+- User-centered architecture
+- Technical excellence without compromise
+
+> "Perfection is achieved not when there 
+> is nothing more to add, but when there 
+> is nothing left to take away."
+> — Antoine de Saint-Exupéry</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section about-team">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Notre Équipe</h2>
+                    <p class="section-description">Des experts passionnés par la création de solutions numériques élégantes et performantes.</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <div class="photo-placeholder"></div>
+                        </div>
+                        <h3>Alex Durand</h3>
+                        <p class="member-role">Architecte Technique</p>
+                        <p class="member-bio">Expert en conception de systèmes évolutifs et en optimisation de performances.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <div class="photo-placeholder"></div>
+                        </div>
+                        <h3>Camille Martin</h3>
+                        <p class="member-role">Lead Developer</p>
+                        <p class="member-bio">Spécialiste des frameworks modernes et des méthodologies de développement agile.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <div class="photo-placeholder"></div>
+                        </div>
+                        <h3>Robin Chen</h3>
+                        <p class="member-role">UX/UI Designer</p>
+                        <p class="member-bio">Créatif passionné par l'expérience utilisateur et les interfaces minimalistes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section about-values">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nos Valeurs</h2>
+                    <p class="section-description">Principes qui guident notre travail au quotidien.</p>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                        </div>
+                        <h3>Transparence</h3>
+                        <p>Nous croyons en une communication ouverte et honnête avec nos clients et partenaires.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        </div>
+                        <h3>Qualité</h3>
+                        <p>Nous ne faisons jamais de compromis sur la qualité de notre travail, quel que soit le projet.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>Nous explorons constamment de nouvelles technologies et méthodologies pour rester à la pointe.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3>Collaboration</h3>
+                        <p>Nous travaillons en étroite collaboration avec nos clients pour créer des solutions qui répondent à leurs besoins réels.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section about-history">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Notre Histoire</h2>
+                    <p class="section-description">Comment nous sommes devenus l'entreprise que nous sommes aujourd'hui.</p>
+                </div>
+                <div class="history-timeline">
+                    <div class="history-item">
+                        <div class="history-year">2020</div>
+                        <div class="history-content">
+                            <h3>Fondation</h3>
+                            <p>Kamyko est née de la vision commune de professionnels partageant une passion pour le développement technique d'excellence.</p>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-year">2021</div>
+                        <div class="history-content">
+                            <h3>Premiers Succès</h3>
+                            <p>Notre approche minimaliste et technique a rapidement séduit des clients à la recherche de solutions sur mesure.</p>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-year">2022</div>
+                        <div class="history-content">
+                            <h3>Expansion</h3>
+                            <p>Croissance de notre équipe et élargissement de notre portefeuille de services pour répondre à une demande croissante.</p>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-year">2024</div>
+                        <div class="history-content">
+                            <h3>Aujourd'hui</h3>
+                            <p>Kamyko continue d'évoluer et d'innover, tout en restant fidèle à ses principes fondateurs de simplicité et d'excellence technique.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Prêt à travailler ensemble?</h2>
+                    <p>Découvrez comment notre approche peut transformer votre projet.</p>
+                    <div class="cta-buttons">
+                        <a href="services.html" class="btn btn-secondary">Nos Services</a>
+                        <a href="contact.html" class="btn btn-primary">Contactez-nous</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="footer-logo">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12v9" /><path d="M12 12l-8 -4.5" /></svg>
+                    <span>KAMYKO</span>
+                </a>
+                <p>&copy; 2024 KAMYKO • Tous droits réservés • Design minimaliste et développement technique d'excellence</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script principal (main.js importe les autres) -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html> 

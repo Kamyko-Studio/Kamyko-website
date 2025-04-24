@@ -80,4 +80,120 @@ function initLogoThemeAdapter() {
     // Appliquer les couleurs initiales
     updateLogoColors();
 }
-*/ 
+*/
+
+// Gestion du thème clair/sombre
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialisation du thème
+  const themeToggle = document.getElementById('theme-toggle');
+  const htmlElement = document.documentElement;
+  let currentTheme = localStorage.getItem('theme') || 'dark';
+  
+  // Mise à jour du texte du bouton en fonction du thème actuel
+  updateThemeToggleText();
+  
+  // Gestionnaire d'événement pour le bouton de changement de thème
+  themeToggle.addEventListener('click', () => {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    htmlElement.setAttribute('data-theme', currentTheme);
+    localStorage.setItem('theme', currentTheme);
+    updateThemeToggleText();
+  });
+  
+  function updateThemeToggleText() {
+    themeToggle.textContent = currentTheme === 'dark' ? 'Mode Clair' : 'Mode Sombre';
+  }
+  
+  // Menu mobile
+  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+  const nav = document.querySelector('.main-nav');
+  
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuBtn.classList.toggle('active');
+    nav.classList.toggle('mobile-menu-active');
+    mobileMenuBtn.setAttribute('aria-expanded', 
+      mobileMenuBtn.getAttribute('aria-expanded') === 'false' ? 'true' : 'false'
+    );
+  });
+  
+  // Animation au scroll des sections
+  const sections = document.querySelectorAll('.section');
+  const cards = document.querySelectorAll('.card');
+  
+  // Attribuer des indices aux cartes pour l'animation séquentielle
+  cards.forEach((card, index) => {
+    card.style.setProperty('--card-index', index % 4);  // Réinitialise pour chaque groupe de 4
+  });
+  
+  // Observer les sections pour les animations au scroll
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  sections.forEach(section => {
+    sectionObserver.observe(section);
+  });
+  
+  // Effet de suivi du curseur
+  const cursorEffect = document.createElement('div');
+  cursorEffect.classList.add('cursor-effect');
+  
+  // N'activer l'effet que sur les écrans desktop
+  if (window.innerWidth >= 992) {
+    document.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      
+      // Mettre à jour la position de l'effet après le curseur
+      document.body.style.setProperty('--cursor-x', `${mouseX}px`);
+      document.body.style.setProperty('--cursor-y', `${mouseY}px`);
+      
+      // Animation CSS pour suivre le curseur
+      requestAnimationFrame(() => {
+        document.body.style.setProperty('--cursor-x', `${mouseX}px`);
+        document.body.style.setProperty('--cursor-y', `${mouseY}px`);
+      });
+    });
+  }
+  
+  // Ajout d'une classe spéciale sur les cartes et boutons pour un effet subtil
+  const interactiveElements = document.querySelectorAll('.card, .btn, h2, .nav-links a');
+  
+  interactiveElements.forEach(element => {
+    element.addEventListener('mouseenter', () => {
+      document.body.style.setProperty('--hover-active', '1');
+    });
+    
+    element.addEventListener('mouseleave', () => {
+      document.body.style.setProperty('--hover-active', '0');
+    });
+  });
+  
+  // Animation du code dans la section hero
+  const codeVisual = document.querySelector('.code-visual');
+  if (codeVisual) {
+    // Animation de saisie progressive du code (effet typing)
+    const codeText = codeVisual.textContent;
+    codeVisual.textContent = '';
+    
+    let charIndex = 0;
+    
+    function typeCode() {
+      if (charIndex < codeText.length) {
+        codeVisual.textContent += codeText.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeCode, Math.random() * 30 + 10); // Vitesse aléatoire pour un effet plus naturel
+      }
+    }
+    
+    // Commencer l'animation avec un délai
+    setTimeout(() => {
+      codeVisual.style.opacity = '0.15';
+      typeCode();
+    }, 1000);
+  }
+}); 
