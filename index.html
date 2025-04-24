@@ -1,31 +1,52 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamyko - Solutions e-commerce sur mesure</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <meta name="description" content="Kamyko - Création d'expériences numériques déjantées et performantes.">
+    <title>Kamyko - Design Cyberpunk & Code Solide</title>
+    <!-- Polices Google Fonts (Orbitron & Roboto Mono) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Préchargement du CSS -->
+    <link rel="preload" href="styles/main.css" as="style">
+    <link rel="stylesheet" href="styles/main.css">
+
+    <!-- Script de gestion du thème (placé en premier pour éviter FOUC) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
 </head>
 <body>
     <header>
         <div class="container">
             <nav class="main-nav">
-                <div class="logo">
-                    <img src="images/logo.svg" alt="Kamyko">
+                <a href="#" class="logo">
+                    <!-- Icône SVG simple pour le logo -->
+                    <svg viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12v9" /><path d="M12 12l-8 -4.5" /></svg>
                     <span>Kamyko</span>
-                </div>
+                </a>
                 <ul class="nav-links">
-                    <li><a href="#about">About us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#use-cases">Use Cases</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#about">//A_Propos</a></li>
+                    <li><a href="#services">//Services</a></li>
+                    <li><a href="#projects">//Projets</a></li>
+                    <li><a href="#pricing">//Tarifs</a></li>
+                    <li><a href="#blog">//Blog</a></li>
+                    <li><a href="#contact">//Contact</a></li>
                 </ul>
-                <a href="#contact" class="btn btn-primary">Request a quote</a>
-                <button class="mobile-menu-btn" aria-label="Menu">
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Changer de thème">
+                        <!-- Le texte sera géré par JS -->
+                        Chargement...
+                    </button>
+                    <!-- Bouton devis retiré du header pour ce style -->
+                </div>
+                <button class="mobile-menu-btn" aria-label="Menu" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -39,93 +60,192 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
-                        <h1>Libérez-vous des plateformes figées. Créez votre propre territoire digital.</h1>
-                        <p>Nous concevons des solutions e-commerce propriétaires, modulaires et sur mesure, pensées pour les marques qui veulent reprendre le contrôle de leur boutique, de leurs données et de leur croissance.</p>
-                        <a href="#consultation" class="btn btn-secondary">Book a consultation</a>
-                    </div>
-                    <div class="hero-image">
-                        <img src="images/hero-illustration.svg" alt="Illustration territoire digital" class="illustration">
+                        <h1>Code Créatif_ Folie Contrôlée</h1>
+                        <p>On casse les codes (littéralement) pour créer des expériences numériques uniques qui marquent les esprits. Prêt pour le décollage ?</p>
+                        <div class="hero-actions">
+                            <a href="#projects" class="btn btn-primary">Voir Nos Folies</a>
+                            <a href="#contact" class="btn btn-secondary">Démarrer un Projet</a>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section class="about-section" id="about">
+            <div class="container">
+                <h2>Qui Sommes-Nous ? (Les Agitateurs)</h2>
+                <p>Kamyko, c'est pas juste une agence. C'est un labo d'idées folles, un atelier de codeurs passionnés, une équipe qui pense que le web peut être plus fun et plus performant. On mélange l'artisanat numérique avec une dose d'audace pour des résultats... électrisants.</p>
+                 <a href="#contact" class="btn btn-secondary">Discutons de Votre Idée Folle</a>
             </div>
         </section>
 
         <section class="services" id="services">
             <div class="container">
                 <div class="services-intro">
-                    <h2 class="services-title">Nos Services</h2>
-                    <p class="services-description">Nous concevons, sécurisons et optimisons des plateformes e-commerce robustes et responsables, pensées pour durer et performer.</p>
+                    <h2 class="services-title">Nos Super-Pouvoirs</h2>
+                    <p class="services-description">Développement, stratégie, design... on touche à tout, mais toujours avec notre grain de folie.</p>
                 </div>
-
                 <div class="services-grid">
+                    <!-- Service Card 1 -->
                     <div class="service-card">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                        </div>
                         <div class="service-content">
-                            <h3 class="service-name">Développement</h3>
+                            <h3 class="service-name">Dev Qui Déchire</h3>
                             <ul class="service-features">
-                                <li>Création de votre plateforme e-commerce</li>
-                                <li>Front-end sur mesure</li>
-                                <li>Back-office modulaire propriétaire</li>
+                                <li>Web Apps explosives</li>
+                                <li>Mobile Apps non-conformistes</li>
+                                <li>Backend qui tient la route (même folle)</li>
                             </ul>
                         </div>
-                        <div class="service-image">
-                            <img src="images/dev-illustration.svg" alt="Illustration développement">
-                        </div>
                     </div>
-
+                    <!-- Service Card 2 -->
                     <div class="service-card">
-                        <div class="service-content">
-                            <h3 class="service-name">Maintenance</h3>
+                         <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                         </div>
-                        <div class="service-image">
-                            <img src="images/maintenance-illustration.svg" alt="Illustration maintenance">
-                        </div>
-                    </div>
-
-                    <div class="service-card">
                         <div class="service-content">
-                            <h3 class="service-name">Audit</h3>
+                            <h3 class="service-name">Stratégie Décalée</h3>
                             <ul class="service-features">
-                                <li>Audit de performance</li>
-                                <li>Audit qualité de code</li>
-                                <li>Audit sécurité</li>
-                                <li>Conseil architecture, stack, migration, optimisation SEO</li>
+                                <li>Positionnement unique</li>
+                                <li>Expérience utilisateur (UX) mémorable</li>
+                                <li>Techno-conseil sans langue de bois</li>
                             </ul>
                         </div>
-                        <div class="service-image">
-                            <img src="images/audit-illustration.svg" alt="Illustration audit">
-                        </div>
                     </div>
-
+                     <!-- Service Card 3 -->
                     <div class="service-card">
+                         <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
                         <div class="service-content">
-                            <h3 class="service-name">Conseil</h3>
+                            <h3 class="service-name">Design Percutant</h3>
                             <ul class="service-features">
-                                <li>Création complète de votre plateforme e-commerce</li>
-                                <li>Front-end sur mesure</li>
-                                <li>Back-office modulaire propriétaire</li>
+                                <li>Interfaces (UI) qui claquent</li>
+                                <li>Identité visuelle forte</li>
+                                <li>Animation & micro-interaction</li>
                             </ul>
                         </div>
-                        <div class="service-image">
-                            <img src="images/conseil-illustration.svg" alt="Illustration conseil">
+                    </div>
+                     <!-- Service Card 4 -->
+                    <div class="service-card">
+                         <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-name">Support Post-Lancement</h3>
+                            <ul class="service-features">
+                                <li>Maintenance proactive (pas plan-plan)</li>
+                                <li>Évolution continue</li>
+                                <li>Hébergement optimisé aux petits oignons</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section class="projects-section" id="projects">
+             <div class="container">
+                <h2>Nos Expériences Récentes</h2>
+                <div class="card-grid">
+                    <div class="placeholder-card">
+                        <h3>Projet "Quantum Leap Frog"</h3>
+                        <p>Une plateforme e-commerce qui défie les lois de la physique (et du panier moyen).</p>
+                        <a href="#" class="btn btn-secondary">Voir le Cas ></a>
+                    </div>
+                    <div class="placeholder-card">
+                        <h3>Projet "Cybernetic Disco"</h3>
+                        <p>Application mobile pour une expérience événementielle... psychédélique et fonctionnelle.</p>
+                         <a href="#" class="btn btn-secondary">Voir le Cas ></a>
+                    </div>
+                     <div class="placeholder-card">
+                        <h3>Projet "Minimalist Mayhem"</h3>
+                        <p>Un site vitrine ultra-épuré mais avec une interaction cachée complètement folle.</p>
+                         <a href="#" class="btn btn-secondary">Voir le Cas ></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing-section" id="pricing">
+            <div class="container">
+                <h2>Prêt à Investir dans la Folie ?</h2>
+                 <div class="card-grid">
+                    <div class="placeholder-card">
+                        <h3>Formule ÉTINCELLE</h3>
+                        <p>Idéal pour tester une idée folle. Audit, prototypage rapide, premiers pas.</p>
+                        <ul><li>// Audit Express</li><li>// Prototype cliquable</li><li>// Stratégie initiale</li></ul>
+                        <a href="#contact" class="btn btn-primary">Ça m'intéresse !</a>
+                    </div>
+                    <div class="placeholder-card">
+                        <h3>Formule IGNITION</h3>
+                        <p>On passe à la vitesse supérieure. Développement complet, design percutant.</p>
+                         <ul><li>// Développement MVP</li><li>// Design UI/UX complet</li><li>// Lancement accompagné</li></ul>
+                        <a href="#contact" class="btn btn-primary">Let's GO !</a>
+                    </div>
+                    <div class="placeholder-card">
+                        <h3>Formule QUANTUM</h3>
+                        <p>Partenariat long-terme pour une innovation continue et déjantée.</p>
+                        <ul><li>// Équipe dédiée</li><li>// Maintenance & Évolution</li><li>// Innovation continue</li></ul>
+                        <a href="#contact" class="btn btn-primary">Vers l'infini !</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-section" id="blog">
+            <div class="container">
+                 <h2>Le Labo Kamyko : Idées & Expériences</h2>
+                 <div class="card-grid">
+                     <div class="placeholder-card">
+                        <h3>Pourquoi votre site est trop sage ?</h3>
+                        <p>Sortir du moule numérique : l'audace comme levier de performance...</p>
+                        <a href="#" class="btn btn-secondary">Lire la suite ></a>
+                    </div>
+                     <div class="placeholder-card">
+                        <h3>CSS is Awesome : Le Glitch Art</h3>
+                        <p>Comment créer des effets visuels déstructurés sans casser votre site...</p>
+                        <a href="#" class="btn btn-secondary">Lire la suite ></a>
+                    </div>
+                     <div class="placeholder-card">
+                        <h3>L'UX peut-elle être fun ET efficace ?</h3>
+                        <p>Spoiler : OUI. Exploration d'interfaces non conventionnelles qui convertissent...</p>
+                         <a href="#" class="btn btn-secondary">Lire la suite ></a>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+         <section class="contact-section" id="contact">
+             <div class="container">
+                <h2>Contactez les Allumés</h2>
+                <p>Une idée ? Un projet ? Envie de discuter de la couleur des chaussettes de l'univers ? Écrivez-nous !</p>
+                <!-- Placeholder pour un formulaire ou des infos de contact -->
+                <div class="contact-info">
+                    <p><strong>Email :</strong> <a href="mailto:hello@kamyko.fou">hello@kamyko.fou</a></p>
+                    <p><strong>Signal :</strong> @kamyko_lab (On préfère)</p>
+                    <a href="#" class="btn btn-primary">Formulaire de Contact Classique (si vous insistez)</a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="images/logo.svg" alt="Kamyko">
-                    <span>Kamyko</span>
+                     <svg viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12v9" /><path d="M12 12l-8 -4.5" /></svg>
+                    <span>Kamyko_Lab</span>
                 </div>
-                <p>&copy; 2023 Kamyko. Tous droits réservés.</p>
+                <p>&copy; 2024 // KAMYKO // Expériences Numériques Non-Conventionnelles</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <!-- Script principal (main.js importe les autres) -->
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>

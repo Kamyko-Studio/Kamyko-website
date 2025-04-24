@@ -1,0 +1,102 @@
+:root {
+    /* Variables de couleur - Mode clair par défaut */
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --text-color: #333333;
+    --background-color: #ffffff;
+    --background-secondary: #f5f5f5;
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --accent-color: #e74c3c;
+    --hover-color: #2980b9;
+    
+    /* Variables pour le logo - Mode clair */
+    --logo-background: rgba(52, 152, 219, 0.1);
+    --logo-primary: #3498db;
+    --logo-secondary: rgba(52, 152, 219, 0.7);
+    --logo-accent: #2c3e50;
+    
+    /* Typographie */
+    --font-family-base: 'Roboto', 'Segoe UI', sans-serif;
+    --font-family-headings: 'Montserrat', 'Segoe UI', sans-serif;
+    --font-size-base: 16px;
+    --line-height-base: 1.5;
+    
+    /* Ombres */
+    --box-shadow-sm: 0 2px 4px var(--shadow-color);
+    --box-shadow-md: 0 4px 8px var(--shadow-color);
+    --box-shadow-lg: 0 6px 16px var(--shadow-color);
+    
+    /* Arrondis */
+    --border-radius-sm: 4px;
+    --border-radius-md: 6px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 20px;
+    --border-radius-circle: 50%;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Espacements */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Tailles des conteneurs */
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1280px;
+    
+    /* Z-index */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+}
+
+/* Mode sombre */
+.dark-theme {
+    --primary-color: #2980b9;
+    --secondary-color: #27ae60;
+    --text-color: #f0f0f0;
+    --background-color: #1a1a1a;
+    --background-secondary: #2c2c2c;
+    --border-color: #444444;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --accent-color: #c0392b;
+    --hover-color: #3498db;
+    
+    /* Variables pour le logo - Mode sombre */
+    --logo-background: rgba(41, 128, 185, 0.2);
+    --logo-primary: #2980b9;
+    --logo-secondary: rgba(41, 128, 185, 0.7);
+    --logo-accent: #ecf0f1;
+}
+
+/* Styles pour le logo */
+.logo-img {
+    width: 48px;
+    height: 48px;
+    transition: var(--transition-normal);
+}
+
+/* Styles spécifiques pour le logo en mode clair */
+.light-logo {
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Styles spécifiques pour le logo en mode sombre */
+.dark-logo {
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.1));
+}
+
+/* ... existing code ... */ 
