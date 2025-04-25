@@ -10,8 +10,8 @@ import { onDOMReady, debounce } from './utils.js';
 function initApp() {
     console.log('Initialisation de l\'application...');
     
-    // Initialisation du gestionnaire de thème (chargement initial)
-    // initTheme(); // initTheme est déjà appelé par le script inline dans <head>
+    // Initialisation du gestionnaire de thème
+    initTheme(); // Initialiser explicitement le thème
     
     // Initialisation du menu mobile
     initMobileMenu();
@@ -103,18 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateThemeToggleText() {
     themeToggle.textContent = currentTheme === 'dark' ? 'Mode Clair' : 'Mode Sombre';
   }
-  
-  // Menu mobile
-  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-  const nav = document.querySelector('.main-nav');
-  
-  mobileMenuBtn.addEventListener('click', () => {
-    mobileMenuBtn.classList.toggle('active');
-    nav.classList.toggle('mobile-menu-active');
-    mobileMenuBtn.setAttribute('aria-expanded', 
-      mobileMenuBtn.getAttribute('aria-expanded') === 'false' ? 'true' : 'false'
-    );
-  });
   
   // Animation au scroll des sections
   const sections = document.querySelectorAll('.section');

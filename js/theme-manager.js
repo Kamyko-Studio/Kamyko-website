@@ -15,7 +15,29 @@ class ThemeManager {
         console.log('Initialisation du gestionnaire de thème');
         this.loadSavedTheme();
         // Met à jour le texte du bouton initialement
-        this.updateToggleButtonText(); 
+        this.updateToggleButtonText();
+        
+        // Ajouter directement des écouteurs d'événements aux boutons de thème
+        this.setupEventListeners();
+    }
+    
+    /**
+     * Configure les écouteurs d'événements sur les boutons de thème
+     */
+    setupEventListeners() {
+        // Sélectionner à nouveau les boutons pour s'assurer qu'ils sont tous trouvés
+        this.toggleButtons = document.querySelectorAll('.theme-toggle');
+        
+        // Ajouter un gestionnaire d'événement à chaque bouton
+        this.toggleButtons.forEach(button => {
+            if (button) {
+                // Supprimer tout écouteur précédent pour éviter les doublons
+                button.removeEventListener('click', this.toggleTheme.bind(this));
+                // Ajouter le nouvel écouteur
+                button.addEventListener('click', this.toggleTheme.bind(this));
+                console.log('Écouteur d\'événement ajouté au bouton de thème:', button);
+            }
+        });
     }
     
     /**
@@ -90,6 +112,11 @@ const themeManager = new ThemeManager();
 export function initTheme() {
     console.log('Fonction initTheme appelée');
     themeManager.init();
+    
+    // Vérifier les boutons après un court délai pour s'assurer que le DOM est complètement chargé
+    setTimeout(() => {
+        themeManager.setupEventListeners();
+    }, 100);
 }
 
 // Fonction pour basculer le thème, à utiliser comme callback pour les événements

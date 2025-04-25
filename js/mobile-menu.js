@@ -1,226 +1,250 @@
 /**
- * Gestionnaire de menu mobile - Gère l'affichage et le comportement du menu mobile
+ * Gestionnaire de menu mobile - Version simplifiée et robuste
  */
-import { toggleTheme } from './theme-manager.js';
 
-class MobileMenuManager {
-    constructor() {
-        this.mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        this.navLinks = document.querySelector('.nav-links');
-        this.navActions = document.querySelector('.nav-actions');
-        
-        this.init();
+// Fonction principale d'initialisation du menu mobile
+export function initMobileMenu() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    const navActions = document.querySelector('.nav-actions');
+    
+    if (!mobileMenuBtn || !navLinks) return;
+    
+    // État initial : menu fermé
+    let menuOpen = false;
+    
+    // Point de rupture mobile (en pixels)
+    const MOBILE_BREAKPOINT = 768;
+    
+    // Fonction pour vérifier si on est en mode mobile
+    function isMobile() {
+        return window.innerWidth <= MOBILE_BREAKPOINT;
     }
     
-    /**
-     * Initialise le gestionnaire de menu mobile
-     */
-    init() {
-        if (this.mobileMenuBtn && this.navLinks) {
-            this.setupEventListeners();
-        }
-    }
-    
-    /**
-     * Configure les écouteurs d'événements
-     */
-    setupEventListeners() {
-        this.mobileMenuBtn.addEventListener('click', this.toggleMobileMenu.bind(this));
+    // Fonction pour ouvrir le menu
+    function openMenu() {
+        if (menuOpen || !isMobile()) return; // Ne rien faire si déjà ouvert ou si on n'est pas en mobile
         
-        // Fermer le menu mobile lors du clic sur un lien
-        const links = this.navLinks.querySelectorAll('a');
-        links.forEach(link => {
-            link.addEventListener('click', this.handleLinkClick.bind(this));
+        // 1. Mise à jour de l'état
+        menuOpen = true;
+        
+        // 2. Modifier l'apparence du bouton (hamburger -> croix)
+        mobileMenuBtn.classList.add('active');
+        const spans = mobileMenuBtn.querySelectorAll('span');
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+        
+        // 3. Afficher et configurer le menu mobile
+        // Ajouter une classe spécifique au menu mobile pour pouvoir le styler différemment
+        navLinks.classList.add('mobile-active');
+        
+        // Appliquer les styles du menu mobile
+        navLinks.style.display = 'flex';
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.position = 'absolute';
+        navLinks.style.top = '100%';
+        navLinks.style.left = '0';
+        navLinks.style.right = '0'; // S'assurer qu'il couvre toute la largeur
+        navLinks.style.width = '100%';
+        navLinks.style.backgroundColor = 'var(--surface-color)';
+        navLinks.style.padding = '1rem';
+        navLinks.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+        navLinks.style.zIndex = '1000';
+        navLinks.style.borderRadius = '0 0 8px 8px';
+        
+        // 4. Configurer les liens dans le menu mobile
+        const navItems = navLinks.querySelectorAll('li');
+        navItems.forEach(item => {
+            item.style.margin = '0.5rem 0';
+            item.style.width = '100%';
+            
+            const link = item.querySelector('a');
+            if (link) {
+                link.style.display = 'block';
+                link.style.padding = '0.5rem 0';
+                link.style.fontSize = '1rem';
+                link.style.textAlign = 'center';
+                link.style.width = '100%';
+            }
         });
         
-        // Fermer le menu mobile lors du redimensionnement de la fenêtre
-        window.addEventListener('resize', this.handleResize.bind(this));
-    }
-    
-    /**
-     * Bascule l'affichage du menu mobile
-     */
-    toggleMobileMenu() {
-        // Toggle de la classe active sur le bouton
-        this.mobileMenuBtn.classList.toggle('active');
-        
-        // Si le menu mobile n'est pas visible, on l'affiche
-        if (this.navLinks.style.display === 'none' || this.navLinks.style.display === '') {
-            this.showMobileMenu();
-        } else {
-            this.hideMobileMenu();
-        }
-        
-        // Animation des barres du hamburger
-        this.animateHamburgerIcon();
-    }
-    
-    /**
-     * Affiche le menu mobile
-     */
-    showMobileMenu() {
-        // Ajouter la classe mobile-active au menu de navigation
-        this.navLinks.classList.add('mobile-active');
-        
-        // Configurer les styles CSS pour le menu mobile
-        this.navLinks.style.display = 'flex';
-        this.navLinks.style.flexDirection = 'column';
-        this.navLinks.style.position = 'absolute';
-        this.navLinks.style.top = '100%';
-        this.navLinks.style.left = '0';
-        this.navLinks.style.width = '100%';
-        this.navLinks.style.backgroundColor = 'var(--color-background)';
-        this.navLinks.style.padding = 'var(--spacing-md)';
-        this.navLinks.style.boxShadow = 'var(--shadow-md)';
-        this.navLinks.style.zIndex = '1000';
-        
-        // Afficher aussi les actions de navigation dans le menu mobile
-        if (this.navActions) {
-            // Créer un conteneur dédié pour le bouton de thème et les actions
+        // 5. Ajouter les actions de navigation si elles existent
+        if (navActions) {
+            // S'assurer qu'il n'y a pas déjà un conteneur d'actions
+            const existingContainer = navLinks.querySelector('.mobile-actions-container');
+            if (existingContainer) {
+                navLinks.removeChild(existingContainer);
+            }
+            
+            // Créer le conteneur pour les actions
             const mobileActionsContainer = document.createElement('div');
             mobileActionsContainer.className = 'mobile-actions-container';
             
-            // Appliquer des styles au conteneur
+            // Styles du conteneur
             mobileActionsContainer.style.display = 'flex';
             mobileActionsContainer.style.flexDirection = 'column';
             mobileActionsContainer.style.alignItems = 'center';
             mobileActionsContainer.style.width = '100%';
-            mobileActionsContainer.style.marginTop = 'var(--spacing-md)';
-            mobileActionsContainer.style.padding = 'var(--spacing-sm) 0';
+            mobileActionsContainer.style.marginTop = '1rem';
+            mobileActionsContainer.style.paddingTop = '1rem';
+            mobileActionsContainer.style.borderTop = '1px solid var(--border-color, #ddd)';
             
-            // Clone les actions de navigation
-            const actionsClone = this.navActions.cloneNode(true);
+            // Cloner les actions
+            const actionsClone = navActions.cloneNode(true);
             
-            // Appliquer les styles au clone
+            // Styles du clone
             actionsClone.style.display = 'flex';
             actionsClone.style.flexDirection = 'column';
             actionsClone.style.alignItems = 'center';
             actionsClone.style.width = '100%';
-            actionsClone.style.gap = 'var(--spacing-md)';
+            actionsClone.style.gap = '0.5rem';
             
-            // S'assurer que le bouton de thème est bien positionné
+            // Configurer le bouton de thème s'il existe
             const themeToggle = actionsClone.querySelector('.theme-toggle');
             if (themeToggle) {
-                themeToggle.style.margin = '0 auto var(--spacing-sm) auto';
-                // Le changement de thème est géré par l'écouteur global dans l'HTML
+                themeToggle.style.margin = '0.5rem auto';
+                themeToggle.style.width = '100%';
+                themeToggle.style.maxWidth = '200px';
+                themeToggle.style.padding = '0.5rem';
             }
             
-            // S'assurer que le bouton d'action est bien positionné
+            // Configurer le bouton d'action s'il existe
             const actionButton = actionsClone.querySelector('.btn');
             if (actionButton) {
                 actionButton.style.width = '100%';
+                actionButton.style.maxWidth = '200px';
                 actionButton.style.textAlign = 'center';
-                actionButton.style.margin = '0 auto';
+                actionButton.style.margin = '0.5rem auto';
+                actionButton.style.padding = '0.5rem 1rem';
             }
             
             // Ajouter le clone au conteneur et le conteneur au menu
             mobileActionsContainer.appendChild(actionsClone);
-            this.navLinks.appendChild(mobileActionsContainer);
+            navLinks.appendChild(mobileActionsContainer);
         }
+        
+        // Ajouter l'écouteur pour les clics extérieurs seulement quand le menu est ouvert
+        setTimeout(() => {
+            document.addEventListener('click', handleOutsideClick);
+        }, 10);
     }
     
-    /**
-     * Cache le menu mobile
-     */
-    hideMobileMenu() {
-        // Supprimer la classe mobile-active
-        this.navLinks.classList.remove('mobile-active');
+    // Fonction pour fermer le menu
+    function closeMenu() {
+        if (!menuOpen) return; // Ne rien faire si déjà fermé
         
-        // Réinitialiser les styles
-        this.navLinks.style.display = '';
-        this.navLinks.style.flexDirection = '';
-        this.navLinks.style.position = '';
-        this.navLinks.style.top = '';
-        this.navLinks.style.left = '';
-        this.navLinks.style.width = '';
-        this.navLinks.style.backgroundColor = '';
-        this.navLinks.style.padding = '';
-        this.navLinks.style.boxShadow = '';
-        this.navLinks.style.zIndex = '';
+        // 1. Mise à jour de l'état
+        menuOpen = false;
         
-        // Retirer le conteneur des actions de navigation
-        const mobileActionsContainer = this.navLinks.querySelector('.mobile-actions-container');
+        // 2. Modifier l'apparence du bouton (croix -> hamburger)
+        mobileMenuBtn.classList.remove('active');
+        const spans = mobileMenuBtn.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+        
+        // 3. Masquer et réinitialiser le menu
+        navLinks.classList.remove('mobile-active');
+        
+        // Réinitialiser tous les styles appliqués
+        navLinks.style.display = '';
+        navLinks.style.flexDirection = '';
+        navLinks.style.position = '';
+        navLinks.style.top = '';
+        navLinks.style.left = '';
+        navLinks.style.right = '';
+        navLinks.style.width = '';
+        navLinks.style.backgroundColor = '';
+        navLinks.style.padding = '';
+        navLinks.style.boxShadow = '';
+        navLinks.style.zIndex = '';
+        navLinks.style.borderRadius = '';
+        
+        // 4. Réinitialiser les styles des liens
+        const navItems = navLinks.querySelectorAll('li');
+        navItems.forEach(item => {
+            item.style.margin = '';
+            item.style.width = '';
+            
+            const link = item.querySelector('a');
+            if (link) {
+                link.style.display = '';
+                link.style.padding = '';
+                link.style.fontSize = '';
+                link.style.textAlign = '';
+                link.style.width = '';
+            }
+        });
+        
+        // 5. Supprimer le conteneur des actions de navigation
+        const mobileActionsContainer = navLinks.querySelector('.mobile-actions-container');
         if (mobileActionsContainer) {
-            this.navLinks.removeChild(mobileActionsContainer);
+            navLinks.removeChild(mobileActionsContainer);
         }
-    }
-    
-    /**
-     * Anime l'icône hamburger
-     */
-    animateHamburgerIcon() {
-        const spans = this.mobileMenuBtn.querySelectorAll('span');
         
-        if (this.mobileMenuBtn.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+        // Supprimer l'écouteur de clics extérieurs quand le menu est fermé
+        document.removeEventListener('click', handleOutsideClick);
+    }
+    
+    // Gestionnaire pour les clics extérieurs
+    function handleOutsideClick(event) {
+        // Ne réagir que si le menu est ouvert et le clic est à l'extérieur du menu et du bouton
+        if (menuOpen && 
+            !navLinks.contains(event.target) && 
+            !mobileMenuBtn.contains(event.target)) {
+            
+            // Fermer le menu sans déclencher d'autres événements
+            closeMenu();
+        }
+    }
+    
+    // Gestionnaire de clic sur le bouton du menu
+    mobileMenuBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        if (menuOpen) {
+            closeMenu();
         } else {
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '';
-            spans[2].style.transform = '';
+            openMenu();
         }
-    }
+    });
     
-    /**
-     * Gère le clic sur un lien du menu mobile
-     */
-    handleLinkClick() {
-        if (window.innerWidth <= 768) {
-            this.hideMobileMenu();
-            this.mobileMenuBtn.classList.remove('active');
-            
-            // Réinitialiser l'icône hamburger
-            const spans = this.mobileMenuBtn.querySelectorAll('span');
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '';
-            spans[2].style.transform = '';
+    // Gestionnaire de clic sur les liens du menu
+    const menuLinks = navLinks.querySelectorAll('a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (isMobile() && menuOpen) {
+                closeMenu();
+            }
+        });
+    });
+    
+    // Gestionnaire de redimensionnement de la fenêtre
+    window.addEventListener('resize', () => {
+        if (!isMobile() && menuOpen) {
+            // Si on passe en mode desktop et que le menu mobile est ouvert, on le ferme
+            closeMenu();
+        } else if (isMobile()) {
+            // S'assurer que le bouton est visible en mode mobile
+            mobileMenuBtn.style.display = 'block';
+        } else {
+            // S'assurer que le bouton est caché en mode desktop
+            mobileMenuBtn.style.display = '';
         }
-    }
+    });
     
-    /**
-     * Gère le redimensionnement de la fenêtre
-     */
-    handleResize() {
-        if (window.innerWidth > 768) {
-            // Réinitialiser tous les styles
-            this.hideMobileMenu();
-            this.mobileMenuBtn.classList.remove('active');
-            
-            // Réinitialiser l'icône hamburger
-            const spans = this.mobileMenuBtn.querySelectorAll('span');
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '';
-            spans[2].style.transform = '';
-        }
-    }
-    
-    /**
-     * Retourne le conteneur des actions mobiles
-     * @returns {HTMLElement|null} Le conteneur des actions ou null
-     */
-    getMobileActionsContainer() {
-        return this.navLinks.querySelector('.mobile-actions-container');
-    }
-    
-    /**
-     * Retourne le clone des actions de navigation
-     * @returns {HTMLElement|null} Le clone des actions ou null
-     */
-    getActionClone() {
-        const container = this.getMobileActionsContainer();
-        return container ? container.querySelector('.nav-actions') : null;
+    // Appliquer les styles initiaux en fonction de la taille de l'écran
+    if (isMobile()) {
+        // En mode mobile au chargement, s'assurer que le menu est fermé
+        closeMenu();
+        mobileMenuBtn.style.display = 'block';
+    } else {
+        // En mode desktop au chargement
+        mobileMenuBtn.style.display = 'none';
     }
 }
 
-// Créer l'instance du gestionnaire de menu mobile
-const mobileMenuManager = new MobileMenuManager();
-
-// Fonction d'initialisation pour être utilisée dans main.js
-export function initMobileMenu() {
-    // L'initialisation est déjà faite dans le constructeur
-    // Cette fonction est fournie pour compatibilité avec l'API existante
-}
-
-// Exporter également l'instance pour une utilisation directe
-export default mobileMenuManager; 
+// Export par défaut
+export default initMobileMenu; 
