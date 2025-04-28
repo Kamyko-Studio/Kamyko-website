@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Commencer l'animation avec un délai
     setTimeout(() => {
-      codeVisual.style.opacity = '0.15';
+      codeVisual.style.opacity = '0.35';
       typeCode();
     }, 1000);
   }
