@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MG - Contactez-nous pour discuter de votre projet technique - Solutions numériques innovantes">
-    <title>Contact | MG - Solutions Techniques Innovantes</title>
+    <meta name="description" content="Klyent - Contactez-nous pour discuter de votre projet technique - Solutions numériques innovantes">
+    <title>Contact | Klyent - Solutions Techniques Innovantes</title>
     
     <!-- Polices Google Fonts (JetBrains Mono & Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,8 +29,8 @@
         <div class="container">
             <nav class="main-nav">
                 <a href="index.html" class="logo">
-                    <img class="logo-img" src="images/logo.png" alt="MG Logo">
-                    <span>MG</span>
+                    <img class="logo-img" src="images/logo.png" alt="Klyent Logo">
+                    <span>Klyent</span>
                 </a>
                 <ul class="nav-links">
                     <li><a href="about.html">À PROPOS</a></li>
@@ -61,7 +61,7 @@
             </div>
         </section>
 
-        <section class="section contact-main">
+        <section class="section contact-main" style="border-bottom: none;">
             <div class="container">
                 <div class="contact-grid">
                     <div class="contact-info-column">
@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="info-content">
                                         <h3>EMAIL</h3>
-                                        <p><a href="mailto:contact@mg.tech">contact@mg.tech</a></p>
+                                        <p><a href="mailto:contact@klyent.tech">contact@klyent.tech</a></p>
                                     </div>
                                 </div>
                                 <div class="info-item">
@@ -159,15 +159,8 @@
         </section>
 
         <section class="section map-section">
-            <div class="map-container">
-                <div class="map-placeholder">
-                    <div class="map-overlay">
-                        <div class="map-pin">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                        </div>
-                        <p>MG</p>
-                    </div>
-                </div>
+            <div class="map-container" style="height: 350px;">
+                <div id="map" style="width: 100%; height: 100%;"></div>
             </div>
         </section>
 
@@ -213,10 +206,10 @@
         <div class="container">
             <div class="footer-content">
                 <a href="index.html" class="footer-logo">
-                    <img class="logo-img" src="images/logo.png" alt="MG Logo">
-                    <span>MG</span>
+                    <img class="logo-img" src="images/logo.png" alt="Klyent Logo">
+                    <span>Klyent</span>
                 </a>
-                <p>&copy; 2024 MG • Tous droits réservés • Design minimaliste et développement technique d'excellence</p>
+                <p>&copy; 2024 Klyent • Tous droits réservés • Design minimaliste et développement technique d'excellence</p>
             </div>
         </div>
     </footer>
@@ -224,5 +217,19 @@
     <!-- Script principal (main.js importe les autres) -->
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/contact-form.js"></script>
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var map = L.map('map').setView([43.325012, 5.366175], 12); // Marseille
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            L.marker([43.325012, 5.366175]).addTo(map)
+                .bindPopup('Klyent - Marseille')
+                .openPopup();
+        });
+    </script>
 </body>
 </html> 

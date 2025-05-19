@@ -329,15 +329,22 @@
   }
   
   .logo img {
-    height: 2.5rem;
+    height: 3.2rem;
     width: auto;
     transition: transform var(--transition-normal), filter var(--transition-normal);
   }
   
-  .logo:hover img {
+  [data-theme="light"] .logo img:hover {
     transform: scale(1.1);
-    filter: drop-shadow(0 0 5px var(--accent-color));
+    filter: drop-shadow(0 0 5px var(--accent-color)) /*invert(10%) sepia(94%) saturate(1000%) hue-rotate(190deg) brightness(60%) contrast(124%)*/;
   }
+
+  [data-theme="dark"] .logo:hover img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px var(--accent-color)) /*invert(69%) sepia(94%) saturate(2221%) hue-rotate(157deg) brightness(103%) contrast(104%)*/;
+  }
+
+
   
   .nav-links {
     display: flex;
@@ -1306,9 +1313,4 @@
       width: 100%;
       text-align: center;
     }
-  }
-
-  [data-theme="light"] .logo img,
-  [data-theme="light"] .footer-logo img {
-    filter: brightness(0) invert(0); /* Appliquer un filtre pour rendre le logo noir en mode clair */
   }
