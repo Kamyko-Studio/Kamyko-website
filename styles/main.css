@@ -1314,3 +1314,139 @@
       text-align: center;
     }
   }
+
+  /* === SECTION ILS NOUS ONT FAIT CONFIANCE (NOUVEAU DESIGN SOBRE) === */
+  .trusted-by {
+    background: var(--surface-alt-color) !important;
+    padding: var(--space-lg) 0 var(--space-md) 0;
+    border-bottom: var(--border-width) solid var(--border-color);
+  }
+  .trusted-by .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .trusted-title {
+    font-size: 2.1rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    color: var(--fg-color);
+  }
+  .trusted-logos-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem 3.5rem;
+    margin-top: 2.2rem;
+  }
+  .trusted-logo-card {
+    background: var(--surface-color);
+    border-radius: 50%;
+    box-shadow: 0 4px 24px 0 #0002, 0 1.5px 8px #00f0ff11;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    transition: box-shadow 0.25s, transform 0.22s, background 0.22s;
+    position: relative;
+  }
+  .trusted-logo-card:hover {
+    box-shadow: 0 8px 32px 0 var(--accent-color), 0 2px 12px #00f0ff33;
+    background: linear-gradient(120deg, var(--surface-color) 60%, var(--accent-color) 120%);
+    transform: translateY(-4px) scale(1.06);
+  }
+  .trusted-logo-img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    filter: grayscale(0.2) brightness(1.05) contrast(1.1);
+    transition: filter 0.3s, transform 0.3s;
+    user-select: none;
+  }
+  .trusted-logo-card:hover .trusted-logo-img {
+    filter: none;
+    transform: scale(1.08);
+  }
+  @media (max-width: 992px) {
+    .trusted-logos-flex {
+      gap: 1.5rem 1.5rem;
+    }
+    .trusted-logo-card {
+      width: 80px;
+      height: 80px;
+    }
+    .trusted-logo-img {
+      width: 48px;
+      height: 48px;
+    }
+  }
+  @media (max-width: 600px) {
+    .trusted-logos-flex {
+      gap: 1rem 1rem;
+    }
+    .trusted-logo-card {
+      width: 54px;
+      height: 54px;
+    }
+    .trusted-logo-img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  /* Section logos premium ultra sobre - version grille 2 lignes, logos plus gros */
+  .trusted-logos-premium {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3.5rem 3.5rem;
+    justify-items: center;
+    align-items: center;
+    margin-top: 2.5rem;
+  }
+  .trusted-logo-img.premium {
+    width: 220px;
+    height: 120px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0.15) invert(0) opacity(0.7);
+    transition: filter 0.35s, opacity 0.35s;
+    opacity: 0.85;
+    background: none;
+    box-shadow: none;
+    border: none;
+    outline: none;
+  }
+  .trusted-logo-img.premium:hover,
+  .trusted-logo-img.premium:focus,
+  .trusted-logo-img.premium:active {
+    filter: none;
+    opacity: 1;
+    box-shadow: none;
+    outline: none;
+    border: none;
+  }
+  @media (max-width: 992px) {
+    .trusted-logos-premium {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem 2rem;
+    }
+    .trusted-logo-img.premium {
+      width: 140px;
+      height: 80px;
+    }
+  }
+  @media (max-width: 600px) {
+    .trusted-logos-premium {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.1rem 1.1rem;
+    }
+    .trusted-logo-img.premium {
+      width: 90px;
+      height: 50px;
+    }
+  }
+  [data-theme="dark"] .trusted-logo-img.premium {
+    filter: grayscale(1) brightness(2.2) invert(1) opacity(0.7);
+  }

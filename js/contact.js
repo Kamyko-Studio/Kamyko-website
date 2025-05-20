@@ -139,32 +139,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
-    // Initialiser Google Maps (à implémenter avec une vraie clé API dans un environnement de production)
-    const initMap = () => {
-        const mapPlaceholder = document.querySelector('.map-placeholder');
-        if (!mapPlaceholder) return;
-        
-        // En production, remplacer par l'initialisation de l'API Google Maps
-        // La version actuelle est une version simplifiée simulée
-        
-        // Exemple d'initialisation Google Maps (commenté pour éviter les erreurs)
-        /*
-        const mapOptions = {
-            center: { lat: 48.8566, lng: 2.3522 }, // Coordonnées de Paris (à remplacer)
-            zoom: 15,
-            styles: [ ... ] // Styles personnalisés
-        };
-        
-        const map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        
-        const marker = new google.maps.Marker({
-            position: { lat: 48.8566, lng: 2.3522 },
-            map: map,
-            title: 'Kamyko'
-        });
-        */
-    };
-    
     // FAQ accordéon
     const initFaqAccordion = () => {
         const faqItems = document.querySelectorAll('.faq-item');
